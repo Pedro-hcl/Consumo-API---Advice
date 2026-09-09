@@ -4,7 +4,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-// Classes para mapear a estrutura do JSON da API
+
 public class AdviceResponse
 {
     [JsonPropertyName("slip")]
@@ -24,20 +24,19 @@ class Program
 {
     static async Task Main()
     {
-        // a) Endpoint da API
+       
         string url = "https://api.adviceslip.com/advice";
         
         using HttpClient client = new HttpClient();
 
         try
         {
-            // Fazendo a requisição GET para a API
             string responseBody = await client.GetStringAsync(url);
 
-            // Deserializando a string JSON para o objeto em C#
+            
             var result = JsonSerializer.Deserialize<AdviceResponse>(responseBody);
 
-            // b) Imprimindo os dados na tela do console no formato solicitado
+           
             if (result?.Slip != null)
             {
                 Console.WriteLine("Conselho de Hoje:");
